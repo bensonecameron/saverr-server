@@ -15,6 +15,7 @@ const user = require('./controllers/userscontroller');
 //! DATABASE
 const sequelize = require('./db'); 
 sequelize.sync();
+// sequelize.sync({force: true})
 app.use(express.json());  
 app.use(require('./middleware/headers'));
 
@@ -23,6 +24,6 @@ app.use('/collection', collection)
 app.use('/post', post)
 app.use('/user', user)
 
-app.listen(3000, function () {
-  console.log("App is listening on port 3000");
+app.listen(3001, function () {
+  console.log("App is listening on port 3001");
 })

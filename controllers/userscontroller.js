@@ -10,6 +10,7 @@ router.post('/signup', (req, res) => {
         firstName: req.body.user.firstName,
         lastName: req.body.user.lastName,
         email: req.body.user.email,
+        userName: req.body.user.userName,
         password: bcrypt.hashSync(req.body.user.password, 13),
     })
       .then(function createSuccess(user) {
@@ -27,10 +28,10 @@ router.post('/signup', (req, res) => {
   });
   
   //User Login
-  router.post("/login", function (req, res) {
+  router.post("/signin", function (req, res) {
     User.findOne({
       where: {
-        email: req.body.user.email,
+        userName: req.body.user.userNname
       },
     })
       .then(function loginSuccess(user) {
