@@ -62,7 +62,7 @@ router.post('/signup', (req, res) => {
   });
 
 //! GET ALL Post
-  router.get('/', validateSession, collectionTag, (req, res) => {
+  router.get('/', validateSession, (req, res) => {
     User.findAll()
       .then(user => res.status(200).json(user))
       .catch(err => res.status(500).json({ error: err }))
