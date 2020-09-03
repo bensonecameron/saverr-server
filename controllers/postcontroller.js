@@ -27,7 +27,7 @@ router.post('/new', validateSession, collectionTag, (req, res) => {
         tagsOfPost: req.body.tagsOfPost,
         impPost: req.body.impPost,
         userId: req.user.id,
-        collectionId: req.collection.id
+        collectionTitle: req.body.collectionTitle
 
     }
 

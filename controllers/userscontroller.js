@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const User = require('../db').import('../models/user');
+const validateSession = require('../middleware/validate-session');
 
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
@@ -24,14 +25,14 @@ router.post('/signup', (req, res) => {
           sessionToken: token
         });
       })
-      .catch((err) => res.status(522).json({ error: err })); // changed the errorr to 500
+      .catch((err) => res.status(500).json({ error: err })); 
   });
   
   //User Login
-  router.post("/signin", function (req, res) {
+  router.post('/signin', function (req, res) {
     User.findOne({
       where: {
-        userName: req.body.user.userNname
+        userName: req.body.user.userName
       },
     })
       .then(function loginSuccess(user) {
@@ -59,5 +60,12 @@ router.post('/signup', (req, res) => {
       })
       .catch((err) => res.status(500).json({ error: err }));
   });
+
+//! GET ALL Post
+  router.get('/', validateSession, collectionTag, (req, res) => {
+    User.findAll()
+      .then(user => res.status(200).json(user))
+      .catch(err => res.status(500).json({ error: err }))
+  })
   
   module.exports = router;
