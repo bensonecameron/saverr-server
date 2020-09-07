@@ -1,3 +1,4 @@
+require("dotenv").config();
 const router = require("express").Router();
 const User = require("../db").import("../models/user");
 const validateSession = require("../middleware/validate-session");
