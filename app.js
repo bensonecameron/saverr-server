@@ -23,6 +23,6 @@ app.use("/collection", collection);
 app.use("/post", post);
 app.use("/user", user);
 
-app.listen(3001, function () {
+app.listen(process.env.PORT, function () {
   console.log(`**** App is listening on ${process.env.PORT} *********`);
 });
