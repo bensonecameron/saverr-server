@@ -103,7 +103,7 @@ router.get("/getuser", validateSession, (req, res) => {
         posts: user.posts,
       })
     )
-    .catch((err) => res.status(500).json({ error: err }));
+    .catch((err) => res.status(522).json({ error: err }));
 });
 
 module.exports = router;
