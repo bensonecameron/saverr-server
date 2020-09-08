@@ -59,7 +59,7 @@ router.post("/new", validateSession, collectionTag, (req, res) => {
     tagsOfPost: req.body.tagsOfPost,
     impPost: req.body.impPost,
     userId: req.user.id,
-    collectionTitle: req.body.collectionTitle,
+    collectionId: req.body.collectionId,
   };
 
   Post.create(newPost)
