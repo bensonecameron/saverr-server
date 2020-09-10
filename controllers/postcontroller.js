@@ -23,12 +23,7 @@ router.get("/postuser", validateSession, (req, res) => {
     },
     include: "user",
   })
-    .then(function createSuccess(data) {
-      res.status(200).json({
-        message: "Post User Info Found",
-        data: data,
-      });
-    })
+    .then((post) => res.status(200).json(post))
     .catch((err) => res.status(500).json({ error: err }));
 });
 
@@ -59,7 +54,7 @@ router.post("/new", validateSession, collectionTag, (req, res) => {
     tagsOfPost: req.body.tagsOfPost,
     impPost: req.body.impPost,
     userId: req.user.id,
-    collectionTitle: req.body.collectionTitle,
+    collectionId: req.body.collectionId,
   };
 
   Post.create(newPost)
