@@ -18,5 +18,9 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.BOOLEAN,
       allowNull: true,
     },
+    colSelect: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
   });
 };

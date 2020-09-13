@@ -96,6 +96,13 @@ router.put("/:id", validateSession, (req, res) => {
     .catch((err) => res.status(500).json({ error: err }));
 });
 
+//! UPDATE
+router.put("/", validateSession, (req, res) => {
+  Collection.update(req.body, { where: { id: req.params.id } })
+    .then((collection) => res.status(200).json(collection))
+    .catch((err) => res.status(500).json({ error: err }));
+});
+
 //! DELETE
 router.delete("/:id", validateSession, (req, res) => {
   Collection.destroy({

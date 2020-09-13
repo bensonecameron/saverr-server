@@ -62,6 +62,13 @@ router.post("/new", validateSession, collectionTag, (req, res) => {
     .catch((err) => res.status(500).json({ error: err }));
 });
 
+//! GET by ID
+router.get("/:id", validateSession, (req, res) => {
+  Post.findOne({ where: { id: req.params.id } })
+    .then((post) => res.status(200).json(post))
+    .catch((err) => res.status(500).json({ error: err }));
+});
+
 //! GET by Name
 router.get("/:name", validateSession, (req, res) => {
   Post.findOne({ where: { titleOfPost: req.params.name } })
@@ -72,6 +79,13 @@ router.get("/:name", validateSession, (req, res) => {
 //! UPDATE by ID
 router.put("/:id", validateSession, (req, res) => {
   Post.update(req.body, { where: { id: req.params.id } })
+    .then((post) => res.status(200).json(post))
+    .catch((err) => res.status(500).json({ error: err }));
+});
+
+//! UPDATE by Select ID
+router.put("/update", validateSession, (req, res) => {
+  Post.update(req.body, { where: { id: req.body.postSelect } })
     .then((post) => res.status(200).json(post))
     .catch((err) => res.status(500).json({ error: err }));
 });
